@@ -1,0 +1,489 @@
+/*=============== GOOGLE FONTS ===============*/
+@import url("https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap");
+
+/*=============== VARIABLES CSS ===============*/
+:root {
+  /*========== Colors ==========*/
+  --first-color: hsl(36, 72%, 48%);
+  --black-color: hsl(206, 12%, 12%);
+  --card-color: hsl(0, 0%, 90%);
+  --title-color: hsl(206, 12%, 12%);
+  --text-color: hsl(206, 4%, 42%);
+  --text-color-light: hsl(206, 4%, 75%);
+  --body-color: hsl(206, 4%, 97%);
+  --container-color: #fff;
+
+  /*========== Font and typography ==========*/
+  --body-font: 'Lato', sans-serif;
+  --biggest-font-size: 2.25rem;
+  --h1-font-size: 1.5rem;
+  /*========== Font weight ==========*/
+  --font-bold: 700;
+
+}
+
+@media screen and (min-width: 968px) {
+  :root {
+    --biggest-font-size: 3.5rem;
+    --h1-font-size: 2.25rem;
+  }
+}
+
+/*=============== BASE ===============*/
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--body-font);
+  background-color: var(--body-color);
+  color: var(--text-color);
+}
+
+h1,
+h2,
+h3,
+h4 {
+  color: var(--title-color);
+}
+
+h1,
+h2,
+h3,
+p {
+  line-height: 140%;
+}
+
+ul {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+/*=============== REUSABLE CSS CLASSES ===============*/
+.container {
+  max-width: 1024px;
+  margin: 0 auto;
+  padding-inline: 1.5em;
+}
+
+.grid {
+  display: grid;
+  gap: 1.5rem;
+}
+
+.title {
+  margin-block: 2em;
+}
+
+.title::before {
+  content: "";
+  display: block;
+  width: 3px;
+  height: 20px;
+  background-color: var(--first-color);
+  position: absolute;
+  top: .5em;
+  left: -.5em;
+}
+
+.btn-primary {
+  display: inline-block;
+  background-color: var(--black-color);
+  color: var(--container-color);
+  padding: 1em 2em;
+  margin-top: 2em;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+.btn-outline {
+  padding: 1em 2em;
+  align-items: center;
+  text-transform: uppercase;
+  margin-top: 2em;
+  letter-spacing: 2px;
+  color: var(--text-color);
+}
+
+/*=============== HEADER & NAV ===============*/
+.header {
+  position: relative;
+  background-color: #000;
+
+}
+
+.nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 10;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  padding-block: 1.5em;
+  background-color: var(--container-color);
+  @include-media(">=tablet") {
+    justify-content: space-around;
+  }
+  
+  &__logo {
+    display: flex;
+    align-items: center;
+    gap: 1em;
+    font-weight: var(--font-bold);
+    color: var(--black-color);
+  }
+  
+  &__menu {
+    display: flex;
+    gap: 1.5em;
+    position: absolute;
+    top: -10000%;
+    left: 0;
+    background-color: var(--black-color);
+    width: 100%;
+    height: 100vh;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    row-gap: 5em;
+    transition: top 1s;
+    @include-media(">=tablet") {
+      position: static;
+      flex-direction: row;
+      background-color: transparent;
+      width: unset;
+      height: unset;
+    }
+    
+    &-visible {
+      top: 0;
+    }
+    
+    &-element {
+      padding-right: 1em;
+      transition: color .8s;
+      color: var(--text-color-light);
+      text-transform: uppercase;
+      @include-media(">=tablet") {
+        text-transform: unset;
+        border-right: 1px solid var(--text-color);
+        color: var(--black-color);
+      }
+      
+      &:hover {
+        color: var(--container-color);
+      }
+    }
+    
+    &-close {
+      font-size: 2em;
+      position: absolute;
+      top: 1em;
+      right: 1em;
+      color: var(--container-color);
+      @include-media(">=tablet") {
+        display: none;
+      }
+    }
+  }
+
+  &__bar {
+      font-size: 2em;
+      color: var(--black-color);
+      @include-media(">=tablet") {
+        display: none;
+      }
+  }
+}
+
+/*=============== HOME ===============*/
+.home {
+  background: linear-gradient(160deg, hsla(206, 5%, 24%, 1) -4%, hsla(206, 12%, 12%, 1) 46%);
+  @include-media(">=tablet") {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+  
+  &__texts {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+  }
+  
+  &__title {
+    color: var(--container-color);
+    font-size: var(--biggest-font-size);
+    margin-top: 3em;
+  }
+  
+  &__text {
+    padding-block: 1em 3em;
+    border-bottom: 1px solid var(--text-color);
+  }
+  
+  &__feactures {
+    padding-bottom: 3em;
+    
+    &-container {
+      display: flex;
+      gap: 1em;
+    }
+    
+    &-statistics {
+      color: var(--first-color);
+      margin-block: 2em 1em;
+      font-size: var(--h1-font-size);
+    }
+    
+    &-title {
+      color: var(--container-color);
+      margin-bottom: 1em;
+    }
+  }
+  
+  &__image {
+    @include-media(">=tablet") {
+      min-height: 100%;
+      object-fit: cover;
+    }
+  }
+}
+
+
+
+/*=============== SPECIALTY ===============*/
+.specialty {
+  grid-template-columns: repeat(auto-fit, 260px);
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  margin-top: 2em;
+  @include-media(">=tablet") {
+    grid-template-columns: repeat(3, 1fr);
+    text-align: left;
+    position: relative;
+  }
+
+  &__titles{
+    position: relative;
+    @include-media(">=tablet") {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+  }
+
+  &__title::after{
+    content: "";
+    display: block;
+    width: 1px;
+    height: 100px;
+    position: absolute;
+    top: 2px;
+    right: 0;
+    background-color: var(--text-color-light);
+  }
+
+  &__card{
+    @include-media(">=tablet") {
+      position: relative;
+    }
+    &-img{
+      width: 100px;
+    }
+  }
+}
+
+
+/*=============== PRODUCTS ===============*/
+.products {
+  grid-template-columns: repeat(auto-fit, 250px);
+  justify-content: center;
+  margin-top: 2em;
+  
+  @include-media(">=tablet") {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+.product {
+  &__image {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 5px;
+    background-color: var(--card-color);
+    padding: 2em;
+    box-shadow: 0 4px 12px hsla(206, 4%, 4%, .2);
+    
+    &-img {
+      width: 150px;
+    }
+  }
+  
+  &__texts {
+    padding: 1em;
+    background-color: var(--container-color);
+    position: relative;
+  }
+  
+  &__buy {
+    background-color: var(--black-color);
+    color: var(--container-color);
+    border-radius: 50%;
+    padding: 1em;
+    position: absolute;
+    top: -1em;
+    right: 1em;
+    cursor: pointer;
+  }
+}
+
+
+/*=============== QUALITY ===============*/
+.quality{
+  @include-media(">=tablet") {
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    gap: 3em;
+  }
+  
+  &__images {
+    position: relative;
+    
+    &-img {
+      border-radius: 10px;
+    }
+    
+    &-absolute {
+      width: 150px;
+      border-radius: 10px;
+      position: absolute;
+      top: 5em;
+      right: -1em;
+    }
+  }
+  
+  &__texts {
+    &-title {
+      font-size: var(--h1-font-size);
+      margin-block: 1em;
+    }
+    
+    &-price {
+      font-size: var(--h1-font-size);
+    }
+    
+    &-text {
+      margin-top: 1em;
+    }
+  }
+  
+  &__buttons {
+    display: flex;
+    gap: 2em;
+    align-items: center;
+  }
+}
+
+/*=============== LOGOS ===============*/
+.logo {
+  grid-template-columns: repeat(3, 1fr);
+  @include-media(">=tablet") {
+    grid-template-columns: repeat(5, 1fr);
+    margin-top: 2em;
+  }
+  
+  &__image {
+    opacity: .4;
+    transition: opacity .8s;
+    
+    &:hover {
+      opacity: 1;
+    }
+  }
+}
+
+/*=============== BLOG ===============*/
+.blog{
+  @include-media(">=tablet") {
+    grid-template-columns: 1fr 1fr;
+    padding-bottom: 2em;
+  }
+  
+  .blog__item {
+    &-image {
+      border-image: 5px;
+      position: relative;
+    }
+    
+    &-icon {
+      background-color: var(--container-color);
+      padding: 1em;
+      position: absolute;
+      right: 0;
+      bottom: 0;
+      cursor: pointer;
+    }
+    
+    &-title {
+      font-size: var(--h1-font-size);
+      margin-bottom: .5em;
+    }
+    
+    &-icons {
+      display: flex;
+      gap: 2em;
+      margin-top: 1em;
+    }
+  }
+}
+
+/*=============== FOOTER ===============*/
+.footer {
+  background-color: var(--black-color);
+  padding-block: 2em;
+  
+  &__widget {
+    grid-template-columns: 1fr 1fr;
+    @include-media(">=tablet") {
+      grid-template-columns: repeat(4, 1fr);
+    }
+    &-title {
+      font-size: var(--h1-font-size);
+      color: var(--container-color);
+    }
+  }
+  
+  &__form {
+    display: flex;
+    gap: .5em;
+    
+    &-input {
+      padding: 1em;
+    }
+    
+    &-submit {
+      padding: 1em;
+      color: var(--black-color);
+      background-color: #d78e21;
+      border-radius: 5px;
+      border: none;
+    }
+  }
+}
